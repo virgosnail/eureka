@@ -1,0 +1,33 @@
+
+server:
+  port: 21020
+
+spring:
+  application:
+    name: eureka-client
+
+eureka:
+  instance:
+#    心跳间隔
+    lease-renewal-interval-in-seconds: 15
+#    失去心跳多久后删除实例
+    lease-expiration-duration-in-seconds: 30
+#    使用 IP 地址的形式定义注册中心的地址
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:21010/eureka/
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+        exclude:
+#    jmx:
+#      exposure:
+#        include: *
+#        exclude:
+
+

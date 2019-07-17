@@ -1,0 +1,58 @@
+server:
+  port: 20001
+# eureka config
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 15
+    lease-expiration-duration-in-seconds: 30
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:21010/eureka/
+
+spring:
+  application:
+    name: service-one
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    druid:
+      url: jdbc:mysql://127.0.0.1:3306/sms?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true  # must change FIXME
+      username: root
+      password: 123456
+      fail-fast: true
+      remove-abandoned: true
+      remove-abandoned-timeout-millis: 60000
+      min-idle: 5      # 线程池最小数量
+      initial-size: 5  # 线程池初始化大小
+      max-active: 20   # 线程池最大活跃数量
+      max-wait: 60000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      validation-query: SELECT 1 FROM DUAL
+      min-evictable-idle-time-millis: 300000
+      time-between-eviction-runs-millis: 60000
+      pool-prepared-statements: true # 下边的参数大于 0 的时候这个参数会默认修改 true，所以有些时候可以不配置
+      max-pool-prepared-statement-per-connection-size: 200
+
+  jackson:
+    default-property-inclusion: non_null
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8 # 如果需要配置时区就和mysql的url参数一致，避免跨时区数据库同步时间错乱 TODO
+    deserialization:
+      adjust_dates_to_context_time_zone: true
+
+# log4j2 config
+logging:
+  config: classpath:log4j2.yml
+  level:
+    org.springframework.boot.autoconfigure: ERROR
+
+mybatis-plus:
+#  configuration:
+#    default-enum-type-handler: com.streamax.s17.cloud.common.mybatis.EnumBaseTypeHandler
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  global-config:
+    logic-delete-value: 1
+    logic-not-delete-value: 0
+    sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector

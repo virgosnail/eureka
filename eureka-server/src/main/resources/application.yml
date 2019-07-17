@@ -1,0 +1,24 @@
+#端口
+server:
+  port: 21010
+
+#应用名称
+spring:
+  application:
+    name: eureka-server
+
+#注册中心
+eureka:
+  instance:
+#    实例主机名称
+    hostname: localhost
+  client:
+#    是否注册到服务中心
+    register-with-eureka: false
+#    是否从服务器获取注册表信息
+    fetch-registry: false
+    serviceUrl:
+#      默认的服务注册地址
+      defaultZone: http://localhost:${server.port}/eureka/
+
+
