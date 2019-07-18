@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -54,5 +55,10 @@ public class TestOneController implements DemoOneService {
     @RequestMapping(value = "/real/hello",method = RequestMethod.POST)
     public String realHello() {
         return "Demo one Service hello";
+    }
+
+    @RequestMapping(value = "/test",method = RequestMethod.GET)
+    public String test(@RequestParam String a,@RequestParam(required = false) int b) {
+        return a + b;
     }
 }
