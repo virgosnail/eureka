@@ -1,9 +1,9 @@
-package com.skd.one.business.common.codec;
+package com.skd.two.business.common.codec;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.skd.one.business.common.GlobalException;
-import com.skd.one.business.common.ResponseResult;
+import com.skd.two.business.common.GlobalException;
+import com.skd.two.business.common.ResponseResult;
 import feign.FeignException;
 import feign.Response;
 import feign.Util;

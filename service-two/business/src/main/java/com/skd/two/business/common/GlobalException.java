@@ -1,4 +1,4 @@
-package com.skd.one.business.common;
+package com.skd.two.business.common;
 
 import lombok.Data;
 
